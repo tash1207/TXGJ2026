@@ -1,34 +1,10 @@
 fileFormatVersion: 2
-guid: 3204950e3fc8e4fd392bdd9458b6b6c2
+guid: eb5693ad09277480b9b111f2717e1892
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 8001869892075530964
-    second: claw_0
-  - first:
-      213: 6418112188237568736
-    second: claw_1
-  - first:
-      213: 1303893168702897911
-    second: claw_2
-  - first:
-      213: -8503868215142287684
-    second: claw_3
-  - first:
-      213: -4568303922841497256
-    second: claw_4
-  - first:
-      213: -2680702258322823550
-    second: claw_5
-  - first:
-      213: -6697986329005613187
-    second: claw_6
-  - first:
-      213: -381538758800132098
-    second: claw_7
-  - first:
-      213: 7329016755571357645
-    second: claw_8
+      213: -7762726613588654957
+    second: claw3_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -137,35 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: claw_0
-      rect:
-        serializedVersion: 2
-        x: 66
-        y: 934
-        width: 365
-        height: 36
-      alignment: 7
-      pivot: {x: 0.5, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      customData: 
-      outline: []
-      physicsShape: []
-      tessellationDetail: -1
-      bones: []
-      spriteID: 4da2e08654a5c0f60800000000000000
-      internalID: 8001869892075530964
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: claw_1
+      name: claw3_0
       rect:
         serializedVersion: 2
         x: 66
         y: 772
         width: 365
-        height: 162
+        height: 161
       alignment: 2
       pivot: {x: 0.5, y: 1}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -174,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 0ea5184d707b11950800000000000000
-      internalID: 6418112188237568736
+      spriteID: 394c39c0641454490800000000000000
+      internalID: -7762726613588654957
       vertices: []
       indices: 
       edges: []
@@ -184,7 +138,7 @@ TextureImporter:
     customData: 
     physicsShape: []
     bones: []
-    spriteID: b4566860a4fbc456bb4d76844a06ee48
+    spriteID: 919b83843a3cd46d7b978a3932a08df6
     internalID: 0
     vertices: []
     indices: 
@@ -192,12 +146,9 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     spriteCustomMetadata:
-      entries:
-      - key: SpriteEditor.SliceSettings
-        value: '{"sliceOnImport":false,"gridCellCount":{"x":1.0,"y":2.0},"gridSpriteSize":{"x":1900.0,"y":540.0},"gridSpriteOffset":{"x":0.0,"y":0.0},"gridSpritePadding":{"x":0.0,"y":0.0},"pivot":{"x":0.5,"y":0.5},"pivotPixels":{"x":0.0,"y":0.0},"autoSlicingMethod":0,"spriteAlignment":0,"pivotUnitMode":0,"slicingType":2,"keepEmptyRects":false,"isAlternate":false}'
+      entries: []
     nameFileIdTable:
-      claw_0: 8001869892075530964
-      claw_1: 6418112188237568736
+      claw3_0: -7762726613588654957
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
