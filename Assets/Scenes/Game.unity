@@ -952,7 +952,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4580b619e4ce243148b5a3160d18a6b5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MouseFollow
-  speed: 3
+  speed: 10
 --- !u!50 &573581300
 Rigidbody2D:
   serializedVersion: 5
