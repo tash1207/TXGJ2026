@@ -11,12 +11,15 @@ public class MouseFollow : MonoBehaviour
     [SerializeField] GameObject clawBottom;
     
     InputControls inputActions;
+    ClawController clawController;
     Rigidbody2D rb;
     bool isDropping = false;
+    bool isOpen = false;
 
     void Awake()
     {
         inputActions = new InputControls();
+        clawController = FindAnyObjectByType<ClawController>();
     }
 
     void Start()
@@ -52,9 +55,15 @@ public class MouseFollow : MonoBehaviour
 
     void OnClick(InputAction.CallbackContext context)
     {
-        if (!isDropping)
+        if (isDropping) return;
+        if (!isOpen)
         {
             StartCoroutine(MoveDownThenUp());
+        }
+        else
+        {
+            clawController.ClawClose();
+            isOpen = false;
         }
     }
 
@@ -62,6 +71,8 @@ public class MouseFollow : MonoBehaviour
     {
         rb.linearVelocity = new Vector2(0f, 0f);
         isDropping = true;
+        clawController.ClawOpen();
+        isOpen = true;
         Vector2 startPosition = clawBottom.transform.position;
         Vector2 targetPosition = new Vector2(clawBottom.transform.position.x, -1.2f);
         // 1. Drop claw
