@@ -48,6 +48,7 @@ public class MouseFollow : MonoBehaviour
             Debug.Log(collision.gameObject);
             Package package = collision.gameObject.GetComponent<Package>();
             heldPackage.GetComponentInChildren<SpriteRenderer>().sprite = package.packageSprite;
+            heldPackage.GetComponent<HeldPackage>().pointValue = package.pointValue;
             heldPackage.SetActive(true);
             isAttached = true;
             Destroy(collision.gameObject);
@@ -84,7 +85,8 @@ public class MouseFollow : MonoBehaviour
             if (isAttached)
             {
                 // Drop Package
-                // TODO: Add points
+                int points = heldPackage.GetComponent<HeldPackage>().pointValue;
+                ScoreManager.Instance.AddPoints(points);
                 heldPackage.SetActive(false);
                 isAttached = false;
             }

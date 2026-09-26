@@ -231,6 +231,7 @@ GameObject:
   - component: {fileID: 7085857310125562960}
   - component: {fileID: 136728230190576405}
   - component: {fileID: 427814641132452567}
+  - component: {fileID: 7455564890796848598}
   m_Layer: 0
   m_Name: HeldPackage
   m_TagString: Untagged
@@ -327,6 +328,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 0.060703516}
   m_EdgeRadius: 0
+--- !u!114 &7455564890796848598
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2670619630422917111}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 26fb7a5ce51ff429682bf81016f3bc9d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::HeldPackage
+  pointValue: 0
 --- !u!1 &4116892319867230870
 GameObject:
   m_ObjectHideFlags: 0
