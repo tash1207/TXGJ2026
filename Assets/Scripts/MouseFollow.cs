@@ -63,7 +63,7 @@ public class MouseFollow : MonoBehaviour
         rb.linearVelocity = new Vector2(0f, 0f);
         isDropping = true;
         Vector2 startPosition = clawBottom.transform.position;
-        Vector2 targetPosition = new Vector2(clawBottom.transform.position.x, -2f);
+        Vector2 targetPosition = new Vector2(clawBottom.transform.position.x, -1.2f);
         // 1. Drop claw
         while (Vector3.Distance(clawBottom.transform.position, targetPosition) > 0.01f)
         {
@@ -73,6 +73,7 @@ public class MouseFollow : MonoBehaviour
         clawBottom.transform.position = targetPosition;
 
         // 2. Pause at the bottom
+        // TODO: Play animation of claw opening
         yield return new WaitForSeconds(pauseTime);
 
         // 3. Move claw back up
