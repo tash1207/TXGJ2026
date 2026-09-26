@@ -49,6 +49,8 @@ public class MouseFollow : MonoBehaviour
             Package package = collision.gameObject.GetComponent<Package>();
             heldPackage.GetComponentInChildren<SpriteRenderer>().sprite = package.packageSprite;
             heldPackage.SetActive(true);
+            isAttached = true;
+            Destroy(collision.gameObject);
         }
     }
 
@@ -79,6 +81,13 @@ public class MouseFollow : MonoBehaviour
         {
             clawController.ClawClose();
             isOpen = false;
+            if (isAttached)
+            {
+                // Drop Package
+                // TODO: Add points
+                heldPackage.SetActive(false);
+                isAttached = false;
+            }
         }
     }
 
