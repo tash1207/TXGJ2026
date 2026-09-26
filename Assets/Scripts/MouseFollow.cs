@@ -3,23 +3,24 @@ using UnityEngine.InputSystem;
 
 public class MouseFollow : MonoBehaviour
 {
-    public int speed;
+    [SerializeField] int speed;
 
-    // Update is called once per frame
-    void Update()
+    Rigidbody2D rb;
+
+    void Start()
+    {
+        rb = GetComponent<Rigidbody2D>();
+    }
+
+    void FixedUpdate()
     {
         Vector2 mouseScreenPosition = Mouse.current.position.ReadValue();
-        // Vector3 targetPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        // targetPos.y = transform.position.y;
-        // targetPos.z = 0f;
-
-        Vector3 targetPosition = Camera.main.ScreenToWorldPoint(new Vector3(
+        Vector2 targetPosition = Camera.main.ScreenToWorldPoint(new Vector2(
             mouseScreenPosition.x, 
-            mouseScreenPosition.y, 
-            0f));
+            mouseScreenPosition.y));
         targetPosition.y = transform.position.y;
-        targetPosition.z = 0f;
 
-        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        Vector2 direction = targetPosition - rb.position;
+        rb.linearVelocity = direction * speed;
     }
 }
