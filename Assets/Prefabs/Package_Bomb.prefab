@@ -60,6 +60,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Package_Bomb
       objectReference: {fileID: 0}
+    - target: {fileID: 8676340159636744969, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
+      propertyPath: packageSprite
+      value: 
+      objectReference: {fileID: -8164380388429133478, guid: c986829f8fd8640099e763eaff93ecd8, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

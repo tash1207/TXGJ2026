@@ -1628,6 +1628,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2164129636107504712, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
     - target: {fileID: 8492985816058768767, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
       propertyPath: m_Name
       value: Package

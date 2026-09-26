@@ -9,12 +9,15 @@ public class MouseFollow : MonoBehaviour
     [SerializeField] int liftSpeed;
     [SerializeField] float pauseTime;
     [SerializeField] GameObject clawBottom;
+    [SerializeField] GameObject heldPackage;
+    [SerializeField] Rigidbody2D rbPackage;
     
     InputControls inputActions;
     ClawController clawController;
-    Rigidbody2D rb;
+    Rigidbody2D rbClaw;
     bool isDropping = false;
     bool isOpen = false;
+    bool isAttached = false;
 
     void Awake()
     {
@@ -24,7 +27,7 @@ public class MouseFollow : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        rbClaw = GetComponent<Rigidbody2D>();
     }
 
     void OnEnable()
@@ -38,6 +41,17 @@ public class MouseFollow : MonoBehaviour
         inputActions.Player.Disable();
     }
 
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Package") && !isAttached)
+        {
+            Debug.Log(collision.gameObject);
+            Package package = collision.gameObject.GetComponent<Package>();
+            heldPackage.GetComponentInChildren<SpriteRenderer>().sprite = package.packageSprite;
+            heldPackage.SetActive(true);
+        }
+    }
+
     void FixedUpdate()
     {
         if (!isDropping)
@@ -48,8 +62,9 @@ public class MouseFollow : MonoBehaviour
                 mouseScreenPosition.y));
             targetPosition.y = transform.position.y;
 
-            Vector2 direction = targetPosition - rb.position;
-            rb.linearVelocity = direction * moveSpeed;
+            Vector2 direction = targetPosition - rbClaw.position;
+            rbClaw.linearVelocity = direction * moveSpeed;
+            rbPackage.linearVelocity = direction * moveSpeed;
         }
     }
 
@@ -69,7 +84,8 @@ public class MouseFollow : MonoBehaviour
 
     IEnumerator MoveDownThenUp()
     {
-        rb.linearVelocity = new Vector2(0f, 0f);
+        rbClaw.linearVelocity = new Vector2(0f, 0f);
+        rbPackage.linearVelocity = new Vector2(0f, 0f);
         isDropping = true;
         clawController.ClawOpen();
         isOpen = true;
@@ -84,7 +100,6 @@ public class MouseFollow : MonoBehaviour
         clawBottom.transform.position = targetPosition;
 
         // 2. Pause at the bottom
-        // TODO: Play animation of claw opening
         yield return new WaitForSeconds(pauseTime);
 
         // 3. Move claw back up
