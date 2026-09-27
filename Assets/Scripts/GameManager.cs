@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     [SerializeField] GameObject loseImage;
 
     public bool isWorkMode;
+    public static bool isEndlessMode = false;
 
     void Awake()
     {
@@ -38,6 +39,7 @@ public class GameManager : MonoBehaviour
 
     public void EndGameWin()
     {
+        if (isEndlessMode) return;
         EndGame(true);
     }
 
