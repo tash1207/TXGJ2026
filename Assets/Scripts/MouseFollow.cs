@@ -59,6 +59,8 @@ public class MouseFollow : MonoBehaviour
             //Destroy(collision.gameObject);
 
             heldPackage = collision.gameObject;
+            // Change tag so it doesn't get moved away with the conveyor belt.
+            heldPackage.tag = "HeldPackage";
 
             heldPackage.transform.SetParent(clawBottom.transform, worldPositionStays: false);
             heldPackage.transform.localPosition = new Vector3(0f, -0.8f, 0f);
@@ -162,12 +164,12 @@ public class MouseFollow : MonoBehaviour
         {
             heldPackage.transform.SetParent(null);
 
-            HeldPackage packageComponent = heldPackage.GetComponent<HeldPackage>();
+            // HeldPackage packageComponent = heldPackage.GetComponent<HeldPackage>();
 
-            if(packageComponent != null)
-            {
-                ScoreManager.Instance.AddPoints(packageComponent.pointValue);
-            }
+            // if(packageComponent != null)
+            // {
+            //     ScoreManager.Instance.AddPoints(packageComponent.pointValue);
+            // }
 
             Collider2D col = heldPackage.GetComponent<Collider2D>();
             

@@ -16,21 +16,18 @@ public class PackageChute : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (!collision.gameObject.CompareTag("Package")) return;
+        if (!collision.gameObject.CompareTag("HeldPackage")) return;
         
         Debug.Log($"Package hit the chute!");
 
-        if (collision.gameObject.CompareTag("Package"))
+        Package packageComponent = collision.gameObject.GetComponent<Package>();
+
+        if (packageComponent != null)
         {
-            HeldPackage packageComponent = collision.gameObject.GetComponent<HeldPackage>();
-
-            if (packageComponent != null)
-            {
-                ScoreManager.Instance.AddPoints(packageComponent.pointValue);
-                Debug.Log($"Package was collected! Player earned {packageComponent.pointValue} points.");
-            }
-
-            Destroy(collision.gameObject);
+            ScoreManager.Instance.AddPoints(packageComponent.pointValue);
+            Debug.Log($"Package was collected! Player earned {packageComponent.pointValue} points.");
         }
+
+        Destroy(collision.gameObject);
     }
 }
