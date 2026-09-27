@@ -37,13 +37,22 @@ public class PackageSpawner : MonoBehaviour
     {
         while (true)
         {
-            yield return new WaitForSeconds(timeBetweenSpawns);
+            float duration = timeBetweenSpawns;
+            float elapsed = 0f;
+
+            while (elapsed < duration && !GameManager.Instance.isWorkMode)
+            {
+                elapsed += Time.deltaTime;
+                yield return null;
+            }
+            //yield return new WaitForSeconds(timeBetweenSpawns);
             SpawnRandomPackages();
             GameObject[] targets = GameObject.FindGameObjectsWithTag("Package");
             foreach (GameObject target in targets)
             {
                 StartCoroutine(GradualMoveRight(target.transform));
             }
+            if (GameManager.Instance.isWorkMode) break;
         }
     }
 

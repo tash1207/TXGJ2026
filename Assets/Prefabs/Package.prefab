@@ -171,6 +171,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Package
   packageSprite: {fileID: 250556490011334668, guid: 8ea9ff28f4ff7463eab58292a4bbcb1e, type: 3}
+  workPackageSprite: {fileID: -2733540719179735178, guid: 35a823a3dc68f4908839163a18f6cf1d, type: 3}
+  pointValue: 0
 --- !u!61 &4192302297392953429
 BoxCollider2D:
   m_ObjectHideFlags: 0

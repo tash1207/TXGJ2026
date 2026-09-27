@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class MusicHandler : MonoBehaviour 
@@ -42,13 +40,23 @@ public class MusicHandler : MonoBehaviour
 
         if (musicSource.clip == clip && musicSource.isPlaying) return;
 
-        musicSource.Stop();
+        // musicSource.Stop();
+        // musicSource.clip = clip;
+        // musicSource.Play();
+        musicSource.Pause();
+        float timestamp = musicSource.time;
         musicSource.clip = clip;
+        musicSource.time = timestamp;
         musicSource.Play();
     }
 
     public void PlayEndingMusic()
     {
         PlayMusic(endingMusic);
+    }
+
+    public void PlayGameMusic()
+    {
+        PlayMusic(gameMusic);
     }
 }

@@ -107,9 +107,13 @@ public class MouseFollow : MonoBehaviour
             if (ScoreManager.Instance.GetScore() <= 0)
             {
                 Debug.Log("Out of coins");
+                EndGame();
             }
-            ScoreManager.Instance.SubtractPoints(10);
-            StartCoroutine(MoveDownThenUp());
+            else
+            {
+                ScoreManager.Instance.SubtractPoints(10);
+                StartCoroutine(MoveDownThenUp());
+            }
         }
         else
         {
@@ -207,5 +211,18 @@ public class MouseFollow : MonoBehaviour
         col.enabled = false;
         yield return new WaitForSeconds(0.2f);
         if (col != null) col.enabled = true;
+    }
+
+    void EndGame()
+    {
+        GameManager.Instance.isWorkMode = true;
+        MusicHandler.Instance.PlayEndingMusic();
+        Package[] allPackages = FindObjectsByType<Package>(FindObjectsSortMode.None);
+        foreach (var package in allPackages)
+        {
+            package.EnableWorkMode();
+        }
+        FindAnyObjectByType<MachineBackground>().EnableWorkMode();
+        GameManager.Instance.ShowGameOverScreenAfterDelay();
     }
 }
