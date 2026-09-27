@@ -16,6 +16,10 @@ public class PackageChute : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (!collision.gameObject.CompareTag("Package")) return;
+        
+        Debug.Log($"Package hit the chute!");
+
         if (collision.gameObject.CompareTag("Package"))
         {
             HeldPackage packageComponent = collision.gameObject.GetComponent<HeldPackage>();
