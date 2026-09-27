@@ -46,12 +46,29 @@ public class MouseFollow : MonoBehaviour
         if (collision.gameObject.CompareTag("Package") && !isAttached)
         {
             Debug.Log(collision.gameObject);
-            Package package = collision.gameObject.GetComponent<Package>();
-            heldPackage.GetComponentInChildren<SpriteRenderer>().sprite = package.packageSprite;
-            heldPackage.GetComponent<HeldPackage>().pointValue = package.pointValue;
-            heldPackage.SetActive(true);
+            //Package package = collision.gameObject.GetComponent<Package>();
+            //heldPackage.GetComponentInChildren<SpriteRenderer>().sprite = package.packageSprite;
+            //heldPackage.GetComponent<HeldPackage>().pointValue = package.pointValue;
+            //heldPackage.SetActive(true);
+            //isAttached = true;
+            //Destroy(collision.gameObject);
+
+            heldPackage = collision.gameObject;
+
+            heldPackage.transform.SetParent(clawBottom.transform, worldPositionStays: false);
+            heldPackage.transform.localPosition = new Vector3(0f, -0.8f, 0f);
+            heldPackage.transform.localRotation = Quaternion.identity;
+
+            rbPackage = heldPackage.GetComponent<Rigidbody2D>();
+
+            if (rbPackage != null)
+            {
+                rbPackage.bodyType = RigidbodyType2D.Kinematic;
+                rbPackage.linearVelocity = Vector2.zero;
+                rbPackage.angularVelocity = 0f;
+            }
+
             isAttached = true;
-            Destroy(collision.gameObject);
         }
     }
 
@@ -67,7 +84,11 @@ public class MouseFollow : MonoBehaviour
 
             Vector2 direction = targetPosition - rbClaw.position;
             rbClaw.linearVelocity = direction * moveSpeed;
-            rbPackage.linearVelocity = direction * moveSpeed;
+            
+            if(rbPackage != null)
+            {
+                rbPackage.linearVelocity = direction * moveSpeed;
+            }
         }
     }
 
@@ -85,18 +106,25 @@ public class MouseFollow : MonoBehaviour
             if (isAttached)
             {
                 // Drop Package
-                int points = heldPackage.GetComponent<HeldPackage>().pointValue;
-                ScoreManager.Instance.AddPoints(points);
-                heldPackage.SetActive(false);
-                isAttached = false;
+                //int points = heldPackage.GetComponent<HeldPackage>().pointValue;
+                //ScoreManager.Instance.AddPoints(points);
+                //heldPackage.SetActive(false);
+                //isAttached = false;
+                DetachAndDropPackage();
             }
         }
     }
 
     IEnumerator MoveDownThenUp()
     {
-        rbClaw.linearVelocity = new Vector2(0f, 0f);
-        rbPackage.linearVelocity = new Vector2(0f, 0f);
+        //rbClaw.linearVelocity = new Vector2(0f, 0f);
+        //rbPackage.linearVelocity = new Vector2(0f, 0f);
+        rbClaw.linearVelocity = Vector2.zero;
+        if(rbPackage != null)
+        {
+            rbPackage.linearVelocity = Vector2.zero;
+        }
+
         isDropping = true;
         clawController.ClawOpen();
         isOpen = true;
@@ -121,5 +149,45 @@ public class MouseFollow : MonoBehaviour
         }
         clawBottom.transform.position = startPosition;
         isDropping = false;
+    }
+
+    void DetachAndDropPackage()
+    {
+        if(heldPackage != null)
+        {
+            heldPackage.transform.SetParent(null);
+
+            HeldPackage packageComponent = heldPackage.GetComponent<HeldPackage>();
+
+            if(packageComponent != null)
+            {
+                ScoreManager.Instance.AddPoints(packageComponent.pointValue);
+            }
+
+            Collider2D col = heldPackage.GetComponent<Collider2D>();
+            
+            if (col != null)
+            {
+                StartCoroutine(EnableColliderRoutine(col));
+            }
+
+            if (rbPackage != null)
+            {
+                rbPackage.bodyType = RigidbodyType2D.Dynamic;
+                rbPackage.gravityScale = 2f;
+                rbPackage.linearVelocity = Vector2.zero;
+            }
+        }
+
+        rbPackage = null;
+        isAttached = false;
+        heldPackage = null;
+    }
+
+    IEnumerator EnableColliderRoutine(Collider2D col)
+    {
+        col.enabled = false;
+        yield return new WaitForSeconds(0.2f);
+        if (col != null) col.enabled = true;
     }
 }
