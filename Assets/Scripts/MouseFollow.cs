@@ -28,6 +28,11 @@ public class MouseFollow : MonoBehaviour
     void Start()
     {
         rbClaw = GetComponent<Rigidbody2D>();
+
+        if(heldPackage != null && !isAttached)
+        {
+            heldPackage.SetActive(false);
+        }
     }
 
     void OnEnable()
@@ -176,6 +181,12 @@ public class MouseFollow : MonoBehaviour
                 rbPackage.bodyType = RigidbodyType2D.Dynamic;
                 rbPackage.gravityScale = 2f;
                 rbPackage.linearVelocity = Vector2.zero;
+            }
+
+            SpriteRenderer spriteRenderer = heldPackage.GetComponentInChildren<SpriteRenderer>();
+            if (spriteRenderer != null && heldPackage.transform.parent == clawBottom)
+            {
+                heldPackage.SetActive(false);
             }
         }
 
