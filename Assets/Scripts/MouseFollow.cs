@@ -104,6 +104,10 @@ public class MouseFollow : MonoBehaviour
         if (isDropping) return;
         if (!isOpen)
         {
+            if (ScoreManager.Instance.GetScore() <= 0)
+            {
+                Debug.Log("Out of coins");
+            }
             ScoreManager.Instance.SubtractPoints(10);
             StartCoroutine(MoveDownThenUp());
         }
