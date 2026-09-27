@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Package
   - Bottom
+  - HeldPackage
   layers:
   - Default
   - TransparentFX
