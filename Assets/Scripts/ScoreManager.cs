@@ -4,7 +4,7 @@ public class ScoreManager : MonoBehaviour
 {
     public static ScoreManager Instance { get; private set; }
 
-    int score = 0;
+    int score;
 
     void Awake()
     {
@@ -12,9 +12,28 @@ public class ScoreManager : MonoBehaviour
         else Destroy(gameObject);
     }
 
+    void Start()
+    {
+        score = 50;
+        CoinManager.Instance.SetCoins(score);
+    }
+
+    public int GetScore()
+    {
+        return score;
+    }
+
     public void AddPoints(int value)
     {
         score += value;
         Debug.Log("Current score: " + score);
+        CoinManager.Instance.SetCoins(score);
+    }
+
+    public void SubtractPoints(int value)
+    {
+        score -= value;
+        Debug.Log("Current score: " + score);
+        CoinManager.Instance.SetCoins(score);
     }
 }

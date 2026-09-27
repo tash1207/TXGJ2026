@@ -104,6 +104,7 @@ public class MouseFollow : MonoBehaviour
         if (isDropping) return;
         if (!isOpen)
         {
+            ScoreManager.Instance.SubtractPoints(10);
             StartCoroutine(MoveDownThenUp());
         }
         else

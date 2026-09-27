@@ -18,8 +18,6 @@ public class PackageChute : MonoBehaviour
     {
         if (!collision.gameObject.CompareTag("HeldPackage")) return;
         
-        Debug.Log($"Package hit the chute!");
-
         Package packageComponent = collision.gameObject.GetComponent<Package>();
 
         if (packageComponent != null)

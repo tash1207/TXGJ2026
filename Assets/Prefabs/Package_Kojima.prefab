@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8676340159636744969, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
       propertyPath: pointValue
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 8676340159636744969, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
       propertyPath: packageSprite
