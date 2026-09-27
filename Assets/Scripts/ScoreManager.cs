@@ -15,7 +15,8 @@ public class ScoreManager : MonoBehaviour
     void Start()
     {
         score = 50;
-        CoinManager.Instance.SetCoins(score);
+        if (CoinManager.Instance != null)
+            CoinManager.Instance.SetCoins(score);
     }
 
     public int GetScore()

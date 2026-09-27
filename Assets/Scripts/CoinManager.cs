@@ -11,12 +11,12 @@ public class CoinManager : MonoBehaviour
     {
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
+
+        coins = new List<Coin>();
     }
 
     void Start()
     {
-        coins = new List<Coin>();
-
         foreach (Transform child in transform)
         {
             if (child.TryGetComponent<Coin>(out var coin))
@@ -24,7 +24,8 @@ public class CoinManager : MonoBehaviour
                 coins.Add(coin);
             }
         }
-        SetCoins(ScoreManager.Instance.GetScore());
+        if (ScoreManager.Instance != null)
+            SetCoins(ScoreManager.Instance.GetScore());
     }
 
     public void SetCoins(int scoreValue)
