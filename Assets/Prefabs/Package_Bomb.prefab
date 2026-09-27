@@ -67,5 +67,30 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 8492985816058768767, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 6853854208825418831}
   m_SourcePrefab: {fileID: 100100000, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
+--- !u!1 &2176422331826239878 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8492985816058768767, guid: 131c25b99dbbe4a2da35a6a75aa2033b, type: 3}
+  m_PrefabInstance: {fileID: 7775764985491739897}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &6853854208825418831
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2176422331826239878}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4402a3c3375b4599aa21b465d76a396, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Detonate
+  explosionRadius: 2.5
+  explosionFrames: []
+  frameDuration: 0.08
+  explosionSound: Audio/explosion
+  wasDropped: 0

@@ -172,6 +172,7 @@ public class MouseFollow : MonoBehaviour
         if(heldPackage != null)
         {
             heldPackage.transform.SetParent(null);
+            //heldPackage.tag = "Package";
 
             // HeldPackage packageComponent = heldPackage.GetComponent<HeldPackage>();
 
@@ -179,6 +180,18 @@ public class MouseFollow : MonoBehaviour
             // {
             //     ScoreManager.Instance.AddPoints(packageComponent.pointValue);
             // }
+            //heldPackage.tag = "Package";
+
+            Detonate bomb = heldPackage.GetComponentInParent<Detonate>();
+
+            if (bomb == null) bomb = heldPackage.GetComponentInChildren<Detonate>();
+            if (bomb == null) bomb = heldPackage.GetComponentInParent<Detonate>();
+
+            if (bomb != null)
+            {
+                bomb.wasDropped = true;
+                Debug.Log("Bomb was dropped and is armed!");
+            }
 
             Collider2D col = heldPackage.GetComponent<Collider2D>();
             
