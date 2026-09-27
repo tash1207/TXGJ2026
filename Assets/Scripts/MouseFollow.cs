@@ -139,12 +139,12 @@ public class MouseFollow : MonoBehaviour
         Vector2 startPosition = clawBottom.transform.position;
         Vector2 targetPosition = new Vector2(clawBottom.transform.position.x, -1.2f);
         // 1. Drop claw
-        while (Vector3.Distance(clawBottom.transform.position, targetPosition) > 0.01f)
+        while (Vector3.Distance(clawBottom.transform.position, targetPosition) > 0.01f && !isAttached)
         {
             clawBottom.transform.position = Vector3.MoveTowards(clawBottom.transform.position, targetPosition, dropSpeed * Time.deltaTime);
             yield return null;
         }
-        clawBottom.transform.position = targetPosition;
+        //clawBottom.transform.position = targetPosition;
 
         // 2. Pause at the bottom
         yield return new WaitForSeconds(pauseTime);
