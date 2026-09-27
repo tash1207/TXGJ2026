@@ -41,6 +41,17 @@ public class Detonate : MonoBehaviour
         }
     }
 
+    public void ExplodeWithDelay()
+    {
+        StartCoroutine(ExplodeAfterDelay());
+    }
+
+    IEnumerator ExplodeAfterDelay()
+    {
+        yield return new WaitForSeconds(0.75f);
+        Explode();
+    }
+
     private void Explode()
     {
         if (hasExploded) return;
@@ -62,8 +73,16 @@ public class Detonate : MonoBehaviour
             
             if(hit.CompareTag("Package"))
             {
-                Destroy(hit.gameObject);
-                Debug.Log("Package hit!");
+                if (hit.GetComponent<Detonate>() != null)
+                {
+                    Debug.Log("Bomb hit!");
+                    hit.GetComponent<Detonate>().ExplodeWithDelay();
+                }
+                else
+                {
+                    Destroy(hit.gameObject);
+                    Debug.Log("Package hit!");
+                }
             }
         }
 

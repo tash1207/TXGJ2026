@@ -89,7 +89,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d4402a3c3375b4599aa21b465d76a396, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Detonate
-  explosionRadius: 2.5
+  explosionRadius: 2
   explosionFrames: []
   frameDuration: 0.08
   explosionSound: Audio/explosion
