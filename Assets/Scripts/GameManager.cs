@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
 
     [SerializeField] float timeBeforeGameOverScreen = 2f;
     [SerializeField] GameObject gameOverScreen;
+    [SerializeField] GameObject winImage;
+    [SerializeField] GameObject loseImage;
 
     public bool isWorkMode;
 
@@ -29,14 +31,45 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene(0);
     }
 
-    public void ShowGameOverScreenAfterDelay()
+    public void EndGameLose()
     {
-        StartCoroutine(ShowGameOver());
+        EndGame(false);
     }
 
-    private IEnumerator ShowGameOver()
+    public void EndGameWin()
+    {
+        EndGame(true);
+    }
+
+    void EndGame(bool wonGame)
+    {
+        isWorkMode = true;
+        MusicHandler.Instance.PlayEndingMusic();
+        Package[] allPackages = FindObjectsByType<Package>(FindObjectsSortMode.None);
+        foreach (var package in allPackages)
+        {
+            package.EnableWorkMode();
+        }
+        FindAnyObjectByType<MachineBackground>().EnableWorkMode();
+        ShowGameOverScreenAfterDelay(wonGame);
+    }
+
+    public void ShowGameOverScreenAfterDelay(bool wonGame)
+    {
+        StartCoroutine(ShowGameOver(wonGame));
+    }
+
+    private IEnumerator ShowGameOver(bool wonGame)
     {
         yield return new WaitForSeconds(timeBeforeGameOverScreen);
+        if (wonGame)
+        {
+            winImage.SetActive(true);
+        }
+        else
+        {
+            loseImage.SetActive(true);
+        }
         gameOverScreen.SetActive(true);
     }
 }

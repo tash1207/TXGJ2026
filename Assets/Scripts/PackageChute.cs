@@ -24,6 +24,10 @@ public class PackageChute : MonoBehaviour
         {
             ScoreManager.Instance.AddPoints(packageComponent.pointValue);
             Debug.Log($"Package was collected! Player earned {packageComponent.pointValue} points.");
+            if (ScoreManager.Instance.GetScore() >= 200)
+            {
+                GameManager.Instance.EndGameWin();
+            }
         }
 
         Destroy(collision.gameObject);
