@@ -7,6 +7,7 @@ TagManager:
   - Package
   - Bottom
   - HeldPackage
+  - ClawBottom
   layers:
   - Default
   - TransparentFX
