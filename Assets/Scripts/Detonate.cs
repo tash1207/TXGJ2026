@@ -8,6 +8,8 @@ public class Detonate : MonoBehaviour
     public float frameDuration = 0.08f;
     public string explosionSound = "Audio/explosion";
     public bool wasDropped = false;
+    public GameObject explosion;
+    public GameObject package;
     
     private bool hasExploded = false;
     private SpriteRenderer spriteRenderer;
@@ -86,14 +88,7 @@ public class Detonate : MonoBehaviour
             }
         }
 
-        if (explosionFrames != null && explosionFrames.Length > 0 && spriteRenderer != null)
-        {
-            StartCoroutine(PlayExplosionAnimation());
-        }
-        else
-        {
-            Destroy(gameObject);
-        }
+        StartCoroutine(PlayExplosionAnimation());
     }
 
     private void PlayExplosionSound()
@@ -113,15 +108,10 @@ public class Detonate : MonoBehaviour
 
     private IEnumerator PlayExplosionAnimation()
     {
-        for (int i = 0; i < explosionFrames.Length; i++)
-        {
-            if(explosionFrames[i] != null)
-            {
-                spriteRenderer.sprite = explosionFrames[i];
-            }
-
-            yield return new WaitForSeconds(frameDuration);
-        }
+        //animator.SetTrigger("Explode");
+        explosion.SetActive(true);
+        package.SetActive(false);
+        yield return new WaitForSeconds(0.35f);
 
         Destroy(gameObject);
     }
@@ -131,6 +121,4 @@ public class Detonate : MonoBehaviour
         Gizmos.color = Color.blue;
         Gizmos.DrawWireSphere(transform.position, explosionRadius);
     }
-
-
 }

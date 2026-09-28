@@ -16,11 +16,11 @@ public class PackageSpawner : MonoBehaviour
     {
         for (int i = 0; i < 13; i++)
         {
-            int row1Index = Random.Range(0, packages.Length);
+            int row1Index = Random.Range(5, packages.Length);
             GameObject packagePrefab1 = packages[row1Index];
-            int row2Index = Random.Range(0, 7);
+            int row2Index = Random.Range(0, 10);
             GameObject packagePrefab2 = packages[row2Index];
-            int row3Index = Random.Range(0, 7);
+            int row3Index = Random.Range(0, 9);
             GameObject packagePrefab3 = packages[row3Index];
 
             // Spawn packages off screen to the left and have them move right with the rest.
